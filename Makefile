@@ -5,7 +5,7 @@ OBJ = ./obj
 SRC = ./src
 
 
-all: clean includes apps run
+all: clean dirs includes apps run
 
 # compila os arquivos no diretorio apps.
 apps: $(BIN)/main
@@ -20,6 +20,11 @@ run: $(BIN)/main
 # remove todos os arquivos binarios.
 clean:
 	rm -rf $(BIN)/* $(OBJ)/*
+
+# cria a estrutura do projeto.
+dirs:
+	mkdir -p $(BIN)
+	mkdir -p $(OBJ)
 
 $(BIN)/%: $(APPS)/%.c
 	gcc $<  $(OBJ)/*.o -I $(INCLUDE) -o $@
